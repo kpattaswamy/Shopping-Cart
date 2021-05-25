@@ -82,7 +82,7 @@ public class driver {
             }
             inventory.printInventory();
 
-            
+
         }else if (userType.equals("Customer")){
             System.out.println("Inventory empty!");
 

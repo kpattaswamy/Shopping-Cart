@@ -24,13 +24,6 @@ public class Inventory {
             itemMap.put(itemName, tempList);
             nameOfItems.add(itemName);
 
-            /*
-            for (String name: itemMap.keySet()) {
-                String key = name.toString();
-                String value = itemMap.get(name).toString();
-                System.out.println(key + " " + value);
-            }
-            */
             printInventory();
         }
     }
