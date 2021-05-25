@@ -3,28 +3,50 @@ import java.util.ArrayList;
 
 public class Inventory {
 
-    //private ArrayList<HashMap<String, ArrayList<Integer>>> itemList = new ArrayList<>();
-    private HashMap<String, ArrayList<Integer>> itemMap = new HashMap<>();
+    private HashMap<String, ArrayList<Double>> itemMap = new HashMap<>();
     private ArrayList<String> nameOfItems = new ArrayList<>();
 
+    public void addItem(String itemName, double quantity, double price){
+        if (itemMap.containsKey(itemName)){
+            //update existing item
+            ArrayList<Double> tempList = new ArrayList<>();
 
-    public void addItem(String itemName, int quantity, int price){
+            tempList.add(itemMap.get(itemName).get(0) + quantity);
+            tempList.add(itemMap.get(itemName).get(1) + price);
 
-        ArrayList<Integer> tempList = new ArrayList<>();
-        tempList.add(quantity);
-        tempList.add(price);
+            itemMap.put(itemName, tempList);
+        }else{
+            //add new item
+            ArrayList<Double> tempList = new ArrayList<>();
+            tempList.add(quantity);
+            tempList.add(price);
 
-        itemMap.put(itemName, tempList);
-        nameOfItems.add(itemName);
+            itemMap.put(itemName, tempList);
+            nameOfItems.add(itemName);
 
-        System.out.println("Updated List: ");
-        System.out.println(nameOfItems);
+            /*
+            for (String name: itemMap.keySet()) {
+                String key = name.toString();
+                String value = itemMap.get(name).toString();
+                System.out.println(key + " " + value);
+            }
+            */
+            printInventory();
+        }
     }
 
-    public ArrayList<Integer> getItem(String itemName){
-        ArrayList<Integer> itemValue = itemMap.get(itemName);
+    public ArrayList<Double> getItem(String itemName){
+        ArrayList<Double> itemValue = itemMap.get(itemName);
 
         return itemValue;
+    }
+
+    public void printInventory(){
+        for (String name: itemMap.keySet()) {
+            String key = name.toString();
+            String value = itemMap.get(name).toString();
+            System.out.println(key + " " + value);
+        }
     }
     //constructor
     public Inventory() {

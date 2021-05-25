@@ -16,7 +16,6 @@ public class driver {
             String userName = input.nextLine();
             System.out.println("Enter Password: ");
             String password = input.nextLine();
-
             boolean flag = true;
 
             while(flag){
@@ -49,9 +48,41 @@ public class driver {
             }
 
             Inventory inventory = new Inventory();
+            flag = true;
+
+            while(flag){
+                double quantity = 0;
+                double price = 0;
+                String itemName = "";
+
+                System.out.println("Enter item, quantity, price OR 'x' to exit adding items");
+                itemName = input.nextLine();
+                //System.out.println("printing item");
+                //System.out.println(itemName);
+                if (itemName.equals("x")){
+                    flag = false;
+                    break;
+                }
 
 
+                try{
+                    quantity = Integer.parseInt(input.nextLine());
+                }catch(InputMismatchException e){
+                    System.out.println("Not a number!");
+                }
 
+                try{
+                    price = Double.parseDouble(input.nextLine());
+                }catch(InputMismatchException e){
+                    System.out.println("Not a number!");
+                }
+
+                inventory.addItem(itemName, quantity, price);
+
+            }
+            inventory.printInventory();
+
+            
         }else if (userType.equals("Customer")){
             System.out.println("Inventory empty!");
 
