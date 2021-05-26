@@ -28,6 +28,35 @@ public class Inventory {
         }
     }
 
+    public ArrayList<Double> popItem(String itemName, double quantity){
+        if (itemMap.containsKey(itemName) == true){
+            ArrayList<Double> temp = new ArrayList<>();
+
+            temp = itemMap.get(itemName);
+            double val = temp.get(0) - quantity;
+
+            if (val == 0 || val < 0){
+                System.out.println("Item not available anymore!");
+                return null;
+            }
+
+            temp.set(0, val);
+            itemMap.put(itemName, temp);
+            System.out.println("update in function");
+            printInventory();
+            //System.exit(1);
+            temp = itemMap.get(itemName);
+            printInventory();
+
+            return temp;
+
+        }else{
+            System.out.println("Item not available!");
+
+            return null;
+        }
+    }
+
     public ArrayList<Double> getItem(String itemName){
         ArrayList<Double> itemValue = itemMap.get(itemName);
 
