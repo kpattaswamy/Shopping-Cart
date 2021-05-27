@@ -19,6 +19,7 @@ public class driver {
             String password = input.nextLine();
             boolean flag = true;
 
+            //logging in for vendor
             while(flag){
                 if (admin.loginCredentials.containsKey(userName)){
                     if (password.equals(admin.loginCredentials.get(userName))){
@@ -50,7 +51,7 @@ public class driver {
 
             Inventory inventory = new Inventory();
             flag = true;
-
+            //add stuff to the inventory
             while(flag){
                 double quantity = 0;
                 double price = 0;
@@ -58,8 +59,8 @@ public class driver {
 
                 System.out.println("Enter item, quantity, price OR 'x' to exit adding items");
                 itemName = input.nextLine();
-                //System.out.println("printing item");
-                //System.out.println(itemName);
+
+
                 if (itemName.equals("x")){
                     flag = false;
                     break;
@@ -125,9 +126,9 @@ public class driver {
             ArrayList<ArrayList<Double>> receiptList = new ArrayList<>();
             ArrayList<String> receiptNames = new ArrayList<>();
 
+            //customer buying
             while(flag){
-                //System.out.println("Available Inventory: ");
-                //inventory.printInventory();
+
 
                 System.out.println("Enter name of item to purchase or press 'x' when finished");
                 String toBuy = input.nextLine();
@@ -140,10 +141,9 @@ public class driver {
                 System.out.println("Enter quantity of item to purchase");
                 double quantity = Integer.parseInt(input.nextLine());
 
-                ArrayList<Double> itemBought = inventory.popItem(toBuy, quantity);
+                ArrayList<Double> itemBought = new ArrayList<>(inventory.popItem(toBuy, quantity));
 
-                //System.out.println(itemBought);
-                //System.exit(4);
+
                 itemBought.set(0, quantity);
 
                 receiptList.add(itemBought);
@@ -155,6 +155,8 @@ public class driver {
 
             System.out.println("Updated Inventory: ");
             inventory.printInventory();
+
+            //print receipt
 
             System.out.println("Receipt: ");
             for (int i = 0; i < receiptNames.size(); i++){

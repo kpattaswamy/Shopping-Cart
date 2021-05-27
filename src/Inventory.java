@@ -42,11 +42,8 @@ public class Inventory {
 
             temp.set(0, val);
             itemMap.put(itemName, temp);
-            System.out.println("update in function");
-            printInventory();
-            //System.exit(1);
+
             temp = itemMap.get(itemName);
-            printInventory();
 
             return temp;
 
